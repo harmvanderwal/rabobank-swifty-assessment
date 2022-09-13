@@ -29,6 +29,7 @@ Authorities: ROLE_USER
 
 - Java 18
 - Spring Webflux
+- Spring Actuator
 - Spring Security
 - Spring Data R2DBC
 - Validation API

@@ -1,3 +1,15 @@
+management:
+  endpoints:
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+  server:
+    port: 8081
+
 spring:
   application:
     name: assessment
