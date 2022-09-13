@@ -30,7 +30,7 @@ class PetControllerTest {
 	private WebTestClient webTestClient;
 
 	@Test
-	void testCreatePerson_BadRequest() {
+	void testCreatePet_BadRequest() {
 		// Given
 		PetRequest petRequest = ResourceHelper
 				.getResourceAsType("json/create_pet_request_bad_request.json", PetRequest.class);
@@ -47,7 +47,7 @@ class PetControllerTest {
 	}
 
 	@Test
-	void testCreatePerson_Success() {
+	void testCreatePet_Success() {
 		// Given
 		PetRequest petRequest = ResourceHelper
 				.getResourceAsType("json/create_pet_request_success.json", PetRequest.class);
@@ -102,7 +102,7 @@ class PetControllerTest {
 	}
 
 	@Test
-	void testGetPerson_Success() {
+	void testGetPet_Success() {
 		// Given
 		PetResponse petResponse = ResourceHelper
 				.getResourceAsType("json/get_pet_response_success.json", PetResponse.class);
@@ -122,7 +122,7 @@ class PetControllerTest {
 	}
 
 	@Test
-	void testUpdatePerson_Success() {
+	void testUpdatePet_Success() {
 		// Given
 		PetRequest petRequest = ResourceHelper
 				.getResourceAsType("json/create_pet_request_success.json", PetRequest.class);
@@ -141,7 +141,7 @@ class PetControllerTest {
 	}
 
 	@Test
-	void testUpdatePerson_BadRequest() {
+	void testUpdatePet_BadRequest() {
 		// Given
 		PetRequest petRequest = ResourceHelper
 				.getResourceAsType("json/create_pet_request_bad_request.json", PetRequest.class);
