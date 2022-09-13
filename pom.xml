@@ -26,6 +26,11 @@
 		<org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
 		<lombok.version>1.18.24</lombok.version>
 		<springdoc-openapi-webflux-ui.version>1.6.11</springdoc-openapi-webflux-ui.version>
+		<skipTests>false</skipTests>
+		<skipUnitTests>false</skipUnitTests>
+		<skipIntegrationTests>false</skipIntegrationTests>
+		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -164,6 +169,29 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
+					<skipITs>${skipIntegrationTests}</skipITs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<skipTests>${skipUnitTests}</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
