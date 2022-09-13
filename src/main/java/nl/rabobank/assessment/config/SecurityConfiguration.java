@@ -17,9 +17,6 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfiguration {
 
-	private static final String[] AUTH_WHITELIST = {"/webjars/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**",
-			"/actuator/**"};
-
 	private final UserRepository userRepository;
 
 	@Bean
@@ -27,10 +24,9 @@ public class SecurityConfiguration {
 		http
 				.csrf().disable()
 				.authorizeExchange()
-				.pathMatchers(HttpMethod.GET, AUTH_WHITELIST).permitAll()
 				.pathMatchers(HttpMethod.PUT, "/v1/person/*").hasRole("ADMIN")
 				.anyExchange()
-				.authenticated()
+				.permitAll()
 				.and()
 				.httpBasic();
 		return http.build();

@@ -69,7 +69,6 @@ class PersonIT extends AbstractIT {
 		// When
 		webTestClient.post()
 				.uri(uriBuilder -> uriBuilder.path(PersonController.BASE_URL).build())
-				.headers(httpHeaders -> httpHeaders.add(HttpHeaders.AUTHORIZATION, USER_BASIC_HEADER))
 				.bodyValue(personRequest)
 				.exchange()
 				.expectStatus()
