@@ -41,14 +41,13 @@ class PersonService(private val entityMapper: EntityMapper,
         if (firstName == null && lastName == null) {
             return Mono.error(IllegalArgumentException(firstNameAndLastNameCantBothBeEmpty))
         }
-        val personResponseMono: Mono<Person> = if (firstName != null && lastName != null) {
+        return (if (firstName != null && lastName != null) {
             personRepository.findPersonByFirstNameAndLastName(firstName, lastName)
         } else if (firstName != null) {
             personRepository.findFirstByFirstName(firstName)
         } else {
             personRepository.findFirstByLastName(lastName!!)
-        }
-        return personResponseMono
+        })
             .map { person: Person -> entityMapper.toPersonResponse(person) }
             .switchIfEmpty(Mono.error(ResponseStatusException(HttpStatus.NOT_FOUND,
                 String.format(noPersonFoundWithName, java.lang.String.join(" ", firstName, lastName)))))
