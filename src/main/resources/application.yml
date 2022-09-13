@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: assessment
+  r2dbc:
+    password: ${global.datasource.password}
+    username: ${global.datasource.username}
+    url: r2dbc:${global.datasource.url}
+    pool:
+      initial-size: 10
+      max-size: 30
+      max-idle-time: 15s
+      validation-query: SELECT 1
+    properties:
+      connect-timeout: 10
+      ssl: false
+      max-create-connection-time: 3
+      max-acquire-time: 5
+      max-life-time: 15
+  jpa:
+    open-in-view: false
+  flyway:
+    baseline-on-migrate: true
+    url: jdbc:${global.datasource.url}
+    user: ${global.datasource.username}
+    password: ${global.datasource.password}
+    placeholder-replacement: false
+    locations: classpath:db/migration
+    enabled: true
+
+global:
+  datasource:
+    url: postgresql://localhost:5432/assessment
+    username: postgres
+    password: postgres
+
+logging:
+  level:
+    nl.rabobank.assessment: debug
