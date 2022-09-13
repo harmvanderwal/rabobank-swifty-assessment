@@ -22,7 +22,6 @@ abstract class AbstractIT {
             postgreSQLContainer.start()
         }
 
-        @JvmStatic
         @DynamicPropertySource
         fun postgreSQLProperties(registry: DynamicPropertyRegistry) {
             registry.add("global.datasource.url") {
@@ -30,19 +29,6 @@ abstract class AbstractIT {
             }
             registry.add("global.datasource.password") { postgreSQLContainer.password }
             registry.add("global.datasource.username") { postgreSQLContainer.username }
-        }
-
-        /**
-         * Necessary to run sql scripts with @Sql
-         */
-        @Bean
-        fun dataSource(): DataSource {
-            val dataSource = DriverManagerDataSource()
-            dataSource.setDriverClassName("org.postgresql.Driver")
-            dataSource.url = postgreSQLContainer.jdbcUrl
-            dataSource.username = postgreSQLContainer.username
-            dataSource.password = postgreSQLContainer.password
-            return dataSource
         }
     }
 }

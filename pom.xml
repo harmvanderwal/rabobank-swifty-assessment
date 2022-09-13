@@ -32,6 +32,8 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<mockito-kotlin.version>4.0.0</mockito-kotlin.version>
 		<jsr305.version>3.0.2</jsr305.version>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<spring-boot.version>2.7.3</spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -181,6 +183,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
@@ -241,6 +244,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>default-compile</id>
