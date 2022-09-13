@@ -12,7 +12,7 @@ class TestConfig {
     /**
      * Necessary to run sql scripts with @Sql
      */
-    @Bean("dataSource")
+    @Bean
     fun dataSource(
         @Value("\${global.datasource.url}") url: String,
         @Value("\${global.datasource.username}") username: String,
