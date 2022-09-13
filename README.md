@@ -38,3 +38,5 @@ Authorities: ROLE_USER
 - Mapstruct
 - Lombok
 - Testcontainers
+- Mockito
+- JUnit5
