@@ -38,10 +38,9 @@ class PersonService(private val entityMapper: EntityMapper,
     }
 
     fun findPersonByName(firstName: String?, lastName: String?): Mono<PersonResponse> {
-        if (firstName == null && lastName == null) {
-            return Mono.error(IllegalArgumentException(firstNameAndLastNameCantBothBeEmpty))
-        }
-        return (if (firstName != null && lastName != null) {
+        return (if (firstName == null && lastName == null) {
+            Mono.error(IllegalArgumentException(firstNameAndLastNameCantBothBeEmpty))
+        } else if (firstName != null && lastName != null) {
             personRepository.findPersonByFirstNameAndLastName(firstName, lastName)
         } else if (firstName != null) {
             personRepository.findFirstByFirstName(firstName)
