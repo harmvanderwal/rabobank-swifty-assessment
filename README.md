@@ -27,7 +27,7 @@ Authorities: ROLE_USER
 
 ## Gebruikte technieken
 
-- Java 18
+- Kotlin 1.7.20-RC
 - Spring Webflux
 - Spring Actuator
 - Spring Security
@@ -36,7 +36,6 @@ Authorities: ROLE_USER
 - Springdoc
 - Flyway
 - Mapstruct
-- Lombok
 - Testcontainers
 - Mockito
 - JUnit5
