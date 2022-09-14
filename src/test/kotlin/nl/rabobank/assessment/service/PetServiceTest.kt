@@ -7,6 +7,7 @@ import nl.rabobank.assessment.persistence.repository.PersonRepository
 import nl.rabobank.assessment.persistence.repository.PetRepository
 import nl.rabobank.assessment.ui.rest.model.request.PetRequest
 import nl.rabobank.assessment.ui.rest.model.response.PetResponse
+import nl.rabobank.assessment.util.ResourceHelper
 import nl.rabobank.assessment.util.ResourceHelper.Companion.getResourceAsType
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -39,13 +40,14 @@ class PetServiceTest {
     @Mock
     private lateinit var personRepository: PersonRepository
 
-    private var pet = Pet(UUID.fromString("0fa281f4-9507-40dd-9165-7d6f49631cab"), "Dog", 12)
+    private var pet = getResourceAsType("json/get_pet_response_success.json", Pet::class.java)
 
     @Mock
     private lateinit var petRepository: PetRepository
 
     @InjectMocks
     private lateinit var petService: PetService
+
 
     @Test
     fun testCreatePet_WithNonExistentOwner() {

@@ -15,12 +15,10 @@ import org.mapstruct.ReportingPolicy
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 interface EntityMapper {
 
-    @Mapping(target = "id", ignore = true)
     fun toPerson(personRequest: PersonRequest): Person
 
     fun toPersonResponse(person: Person): PersonResponse
 
-    @Mapping(target = "id", ignore = true)
     fun toPet(petRequest: PetRequest): Pet
 
     fun toPet(@MappingTarget pet: Pet, petRequest: PetRequest): Pet

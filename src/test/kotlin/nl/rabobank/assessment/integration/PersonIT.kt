@@ -73,7 +73,7 @@ class PersonIT : AbstractIT() {
             .exchange()
             .expectStatus()
             .isCreated
-        personRepository.existsByFirstNameAndLastName("Harm", "van der Wal")
+        personRepository.existsByFirstNameAndLastName("Voornaam", "Achternaam")
             .`as` { publisher -> StepVerifier.create(publisher) }
 
             // Then
@@ -152,8 +152,8 @@ class PersonIT : AbstractIT() {
     @DirtiesContext
     fun testGetPersonByName() {
         // Given
-        val firstName = "Harm"
-        val lastName = "van der Wal"
+        val firstName = "Voornaam"
+        val lastName = "Achternaam"
         val expected = ResourceHelper.getResourceAsType(
             "json/get_person_response_success.json",
             PersonResponse::class.java)

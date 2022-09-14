@@ -6,13 +6,15 @@ import java.util.*
 
 data class Pet(
 
-    @Id
-    private var id: UUID? = null,
     var name: String,
     var age: Int,
-    var personId: UUID? = null
+    var personId: UUID?
 
 ) : Persistable<UUID> {
+
+    @Id
+    private var id: UUID? = null
+
     override fun getId(): UUID? {
         return id
     }

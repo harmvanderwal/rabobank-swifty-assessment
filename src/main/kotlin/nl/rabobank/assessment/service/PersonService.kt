@@ -47,26 +47,26 @@ class PersonService(private val entityMapper: EntityMapper,
         } else {
             personRepository.findFirstByLastName(lastName!!)
         })
-            .map { person: Person -> entityMapper.toPersonResponse(person) }
+            .map { person -> entityMapper.toPersonResponse(person) }
             .switchIfEmpty(Mono.error(ResponseStatusException(HttpStatus.NOT_FOUND,
                 String.format(noPersonFoundWithName, java.lang.String.join(" ", firstName, lastName)))))
     }
 
     fun getAllPeople(): Flux<PersonResponse> {
         return personRepository.findAll()
-            .map { person: Person -> entityMapper.toPersonResponse(person) }
+            .map { person -> entityMapper.toPersonResponse(person) }
     }
 
     fun getPersonById(id: UUID): Mono<PersonResponse> {
         return personRepository.findById(id)
-            .map { person: Person -> entityMapper.toPersonResponse(person) }
+            .map { person -> entityMapper.toPersonResponse(person) }
             .switchIfEmpty(Mono.error(ResponseStatusException(HttpStatus.NOT_FOUND,
                 String.format(noPersonFoundWithId, id))))
     }
 
     fun updatePersonAddress(id: UUID, updateAddressRequest: UpdateAddressRequest?): Mono<Void> {
         return personRepository.findById(id)
-            .map { person: Person -> entityMapper.updatePersonAddress(person, updateAddressRequest) }
+            .map { person -> entityMapper.updatePersonAddress(person, updateAddressRequest) }
             .switchIfEmpty(Mono.error( ResponseStatusException(HttpStatus.NOT_FOUND,
                 String.format(noPersonFoundWithId, id))))
             .flatMap { entity: Person -> personRepository.save(entity) }

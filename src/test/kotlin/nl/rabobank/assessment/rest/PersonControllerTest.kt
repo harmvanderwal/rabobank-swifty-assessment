@@ -103,7 +103,7 @@ class PersonControllerTest {
         val personResponse = getResourceAsType(
             "json/get_person_response_success.json",
             PersonResponse::class.java)
-        Mockito.`when`(personService!!.findPersonByName(firstName, lastName)).thenReturn(Mono.just(personResponse))
+        Mockito.`when`(personService.findPersonByName(firstName, lastName)).thenReturn(Mono.just(personResponse))
 
         // When
         webTestClient.get()

@@ -9,8 +9,6 @@ import java.util.*
 
 data class User(
 
-    @Id
-    private var id: UUID? = null,
     private var password: String,
     var roles: List<Role>,
     private var username: String,
@@ -18,6 +16,9 @@ data class User(
     var locked: Boolean = false
 
 ) : Persistable<UUID>, UserDetails {
+
+    @Id
+    private var id: UUID? = null
 
     override fun getAuthorities(): Collection<GrantedAuthority?>? {
         return roles.stream().map { role: Role ->

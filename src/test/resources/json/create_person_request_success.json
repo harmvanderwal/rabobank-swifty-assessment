@@ -1,10 +1,10 @@
 {
-  "firstName": "Harm",
-  "lastName": "van der Wal",
-  "dateOfBirth": "1989-08-14",
-  "street": "Soendastraat",
+  "firstName": "Voornaam",
+  "lastName": "Achternaam",
+  "dateOfBirth": "1993-04-05",
+  "street": "Straat",
   "houseNumber": 25,
-  "postalCode": "9715NH",
-  "city": "Groningen",
+  "postalCode": "9876AB",
+  "city": "Stad",
   "country": "Netherlands"
 }

@@ -40,16 +40,7 @@ class PersonServiceTest {
     @Spy
     private val entityMapper: EntityMapper = EntityMapperImpl()
 
-    private var person = Person(UUID.fromString("02289f75-b304-419b-b248-91cea8ece639"),
-        "firstName",
-        "lastName",
-        LocalDate.now(),
-        "street",
-        12,
-        null,
-        "9874ES",
-        "Alblasserdam",
-        "Netherlands")
+    private var person = getResourceAsType("json/get_person_response_success.json", Person::class.java)
 
     @Mock
     private lateinit var personRepository: PersonRepository

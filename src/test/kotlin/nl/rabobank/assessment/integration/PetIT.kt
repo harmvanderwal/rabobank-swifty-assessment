@@ -13,7 +13,9 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentCaptor
 import org.mockito.ArgumentMatchers
+import org.mockito.Captor
 import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,6 +43,9 @@ class PetIT : AbstractIT() {
 
     @SpyBean
     private lateinit var petService: PetService
+
+    @Captor
+    private lateinit var petCaptor: ArgumentCaptor<Pet>
 
     @Autowired
     private lateinit var webTestClient: WebTestClient
@@ -93,6 +98,30 @@ class PetIT : AbstractIT() {
         verify(petService).createPet(petRequest)
         verify(personRepository).existsById(personId)
         verify(petRepository, never()).save(ArgumentMatchers.any(Pet::class.java))
+    }
+
+    @Test
+    @DirtiesContext
+    @Sql("/sql/insert_person.sql")
+    fun testCreatePet_WithOwner() {
+        // Given
+        val personId = UUID.fromString("0fa281f4-9507-40dd-9165-7d6f49631cab")
+        val petRequest = ResourceHelper
+            .getResourceAsType("json/create_pet_request_success.json", PetRequest::class.java)
+
+        // When
+        webTestClient.post()
+            .uri(PetController.BASE_URL)
+            .bodyValue(petRequest)
+            .exchange()
+
+            // Then
+            .expectStatus()
+            .isCreated
+        verify(petService).createPet(petRequest)
+        verify(personRepository).existsById(personId)
+        verify(petRepository).save(petCaptor.capture())
+        println(petCaptor.value)
     }
 
     @Test

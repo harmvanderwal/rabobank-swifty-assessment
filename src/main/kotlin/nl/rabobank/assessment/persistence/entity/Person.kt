@@ -7,8 +7,6 @@ import java.util.*
 
 data class Person(
 
-    @Id
-    private var id: UUID? = null,
     var firstName: String,
     var lastName: String,
     var dateOfBirth: LocalDate,
@@ -20,6 +18,9 @@ data class Person(
     var country: String
 
 ) : Persistable<UUID> {
+
+    @Id
+    private var id: UUID? = null
 
     override fun getId(): UUID? {
         return id;
