@@ -28,5 +28,5 @@ interface EntityMapper {
     @Mapping(target = "lastName", ignore = true)
 	@Mapping(target = "firstName", ignore = true)
 	@Mapping(target = "dateOfBirth", ignore = true)
-    fun updatePersonAddress(@MappingTarget person: Person, updateAddressRequest: UpdateAddressRequest?): Person
+    fun updatePersonAddress(@MappingTarget person: Person, updateAddressRequest: UpdateAddressRequest): Person
 }

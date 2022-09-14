@@ -64,7 +64,7 @@ class PersonService(private val entityMapper: EntityMapper,
                 String.format(noPersonFoundWithId, id))))
     }
 
-    fun updatePersonAddress(id: UUID, updateAddressRequest: UpdateAddressRequest?): Mono<Void> {
+    fun updatePersonAddress(id: UUID, updateAddressRequest: UpdateAddressRequest): Mono<Void> {
         return personRepository.findById(id)
             .map { person -> entityMapper.updatePersonAddress(person, updateAddressRequest) }
             .switchIfEmpty(Mono.error( ResponseStatusException(HttpStatus.NOT_FOUND,
